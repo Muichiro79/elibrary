@@ -1,0 +1,14 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <h2>Contact Us</h2>
+    <p>
+        Got questions, suggestions, or issues? Fill out the form below and we’ll get back to you.
+    </p>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Send</button>
+    </form>
+{% endblock %}

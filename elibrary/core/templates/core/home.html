@@ -1,0 +1,23 @@
+{%extends 'core/base.html'%}
+
+{%block content%}
+    <h2>Welcome to the E-Library 📚</h2>
+    <p>
+        Discover a wide variety of books and educational videos. Our digital shelves are open 24/7 to support your learning journey.
+    </p>
+
+    <ul>
+        <li>🔍 Search by title, author, or category</li>
+        <li>📖 Read books online instantly</li>
+        <li>🎬 Watch educational videos</li>
+        <li>⬇️ Download books (if permitted)</li>
+    </ul>
+
+    <p>
+        {% if user.is_authenticated %}
+            Glad to have you back! Check out what's new in your dashboard.
+        {% else %}
+            <a href="{% url 'login' %}">Login</a> or <a href="{% url 'register' %}">Register</a> to get full access.
+        {% endif %}
+    </p>
+{% endblock %}

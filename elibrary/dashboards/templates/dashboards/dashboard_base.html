@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Dashboard{% endblock %}</title>
+
+</head>
+<body>
+    <nav>
+        <ul>
+            {% if user.is_staff %}
+                <li><a href="{% url 'dashboards:admin_dashboard' %}">Admin Dashboard</a></li>
+                <li><a href="{% url 'dashboards:admin_download_requests' %}">Download Requests</a></li>
+                <li><a href="{% url 'dashboards:admin_profile' %}">Profile</a></li>
+            {% else %}
+                <li><a href="{% url 'dashboards:user_dashboard' %}">User Dashboard</a></li>
+                <li><a href="{% url 'dashboards:user_downloads' %}">My Downloads</a></li>
+                <li><a href="{% url 'dashboards:user_profile' %}">Profile</a></li>
+            {% endif %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </nav>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

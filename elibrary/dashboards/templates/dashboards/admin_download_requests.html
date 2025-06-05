@@ -1,0 +1,35 @@
+{% extends 'dashboards/dashboard_base.html' %}
+{% block title %}Download Requests{% endblock %}
+
+{% block content %}
+<h1>Download Requests</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Book</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for req in requests %}
+        <tr>
+            <td>{{ req.user.username }}</td>
+            <td>{{ req.book.title }}</td>
+            <td>{{ req.approved|yesno:"Approved,Pending" }}</td>
+            <td>
+                {% if not req.approved %}
+                    <a href="{% url 'dashboards:approve_download_request' req.id %}">Approve</a>
+                {% else %}
+                    Approved
+                {% endif %}
+            </td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="4">No download requests found.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

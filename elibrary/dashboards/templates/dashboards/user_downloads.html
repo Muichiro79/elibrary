@@ -1,0 +1,14 @@
+{% extends 'dashboards/dashboard_base.html' %}
+{% block title %}My Downloads{% endblock %}
+
+{% block content %}
+<h1>My Approved Downloads</h1>
+
+<ul>
+    {% for req in requests %}
+        <li><a href="{% url 'downloads:download_book' req.book.id %}">{{ req.book.title }}</a></li>
+    {% empty %}
+        <li>You have no approved downloads.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

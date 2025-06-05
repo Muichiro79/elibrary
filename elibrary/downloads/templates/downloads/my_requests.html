@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<h2>My Download Requests</h2>
+<ul>
+  {% for req in requests %}
+    <li>
+      {{ req.book.title }} - 
+      {% if req.approved %}
+        Approved ✅ — 
+        <a href="{% url 'downloads:download_book' req.book.id %}">Download</a>
+      {% else %}
+        Pending ⏳
+      {% endif %}
+    </li>
+  {% empty %}
+    <li>No download requests yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
