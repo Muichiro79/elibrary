@@ -1,0 +1,18 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<h1>{{ book.title }}</h1>
+<p><strong>Author:</strong> {{ book.author }}</p>
+<p><strong>Publisher:</strong> {{ book.publisher }}</p>
+<p><strong>Category:</strong> {{ book.category.name }}</p>
+<p><strong>Description:</strong> {{ book.description }}</p>
+
+
+{% if user.is_authenticated %}
+  <a href="{% url 'downloads:request_download' book.id %}">Request Download</a>
+{% else %}
+  <p><a href="{% url 'login' %}">Login</a> to request downloads.</p>
+{% endif %}
+
+<a href="{% url 'books:book_list' %}">Back to list</a>
+{% endblock %}
