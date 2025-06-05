@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Profile - YourSite</title>
+  </head>
+  <body>
+    <main>
+      <h1>Welcome, {{ request.user.email }}</h1>
+
+      <p><strong>First name:</strong> {{ request.user.first_name }}</p>
+      <p><strong>Last name:</strong> {{ request.user.last_name }}</p>
+
+      <p>
+        <a href="{% url 'edit_profile' %}">Edit Profile</a> |
+        <a href="{% url 'logout' %}">Log Out</a>
+      </p>
+    </main>
+  </body>
+</html>

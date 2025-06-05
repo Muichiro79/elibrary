@@ -1,0 +1,11 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h2>All Videos</h2>
+<ul>
+  {% for video in videos %}
+    <li>
+      <a href="{% url 'videos:video_detail' video.pk %}">{{ video.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}
